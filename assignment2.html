@@ -4,7 +4,7 @@
         <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
 
-        <title>Example Student's HCDE 439 Physical Computing Page!</title> 
+        <title>Rachel Ren's HCDE 439 Physical Computing Page!</title> 
 
         <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
 
@@ -12,13 +12,64 @@
     <body> 
 
         <div class="header">
-            <h1>Example Student's Assignment 2!</h1>
+            <h1>Rachel Ren's Assignment 2!</h1>
             <p>
-            <img src="red-panda.jpg" width=400></a>
+            <img src="button.gif" width=400></a>
             </p>
             <p>
+            <img src="button_circuit.jpg" width=400></a>
+            </p>
+            <p>
+            <img src="button_circuit_1.jpg" width=400></a>
+            </p>
+            Here are the schematics for the button and fading LED schematics: I chose to use 1k resistors to handle the the maximum current for the LEDs. The green LED needed at least 160 ohms of resistance. 
+            </p>
+            <img src="button_schematic.jpg" width=400></a>
+            </p>
+            
             Here is all the documentation for assignment 2!
             </p>
+            <pre>
+                <code>
+int ledPin = 9;      // LED connected to digital pin 9
+int R = 0;           // initialize R to 0
+
+// constants won't change. They're used here to set pin numbers:
+const int buttonPin = 2;     // the number of the pushbutton pin
+const int ledPinButton =  13;      // the number of the LED pin
+
+// variables will change:
+int buttonState = 0;         // variable for reading the pushbutton status
+
+void setup() {
+  // initialize the LED pin as an output:
+  pinMode(ledPinButton, OUTPUT); 
+  // initialize the pushbutton pin as an input:
+  pinMode(buttonPin, INPUT);
+}
+
+void loop() {
+  // read the state of the pushbutton value:
+  buttonState = digitalRead(buttonPin);
+  // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
+  if (buttonState == HIGH) {
+    // turn LED on:
+    digitalWrite(ledPinButton, HIGH);
+  } else {
+    // turn LED off:
+    digitalWrite(ledPinButton, LOW);
+  }
+  // analog write; loop to fade LED in and out between level of 0-256
+  for(int i = 0; i < 256;i++){
+    // writes the level of brightness of the LED to ledPin
+    analogWrite(ledPin, R + i);
+    // delay of .01 seconds
+    delay(10); 
+  }
+
+}
+</code>
+</pre>
         </div>
         
     </body>
