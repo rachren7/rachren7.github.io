@@ -1,0 +1,74 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+        <title>Rachel Ren's HCDE 439 Physical Computing Page!</title> 
+
+        <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+
+    </head> 
+    <body> 
+
+        <div class="header">
+            <h1>Rachel Ren's Assignment 4!</h1>
+            <p>
+            <img src="hw4-gif.gif" width=400></a>
+            </p>
+            Here is a demo of the LED strip lighting up with the transistor in the breadboard. The serial monitor displays the dimming and brightening values for the LED strip.
+            <p>
+            <img src="hw4-pic.jpg" width=400></a>
+            </p>
+            <p>
+            <img src="hw4-schematic.jpg" width=400></a>
+            </p>
+            Above are images and a shematic of the circuit.
+            </p>
+            <p>
+            <img src="hw-calc.jpg" width=400></a>
+            </p>
+            </p>
+             Above are the calculations for using the 1k resistor and a calculation of how much current is being used.
+            </p>
+            Here is all the code documentation for Assignment 4: 
+            </p>
+            <pre>
+                <code>
+// LED connected to digital pin 9
+int ledPin = 9;
+// Initialize value to read from the photoresistor
+int sensorValue = 0; 
+// Initialize value output 
+int outputValue = 0; 
+// Initializing constant A0 for analog pin
+const int analogInPin = A0; 
+
+// Setting up Arduino pins and serial monitor
+void setup() {
+  // Setting analogInPin as an input through A0
+  pinMode(analogInPin, INPUT);
+  // Setting analogInPin as an output through pin 9  
+  pinMode(ledPin, OUTPUT);
+  // Initializing serial communications at 9600 bps
+  Serial.begin(9600);  
+}
+
+void loop() {
+  // Setting sensorValue as the value read by analogInPin
+  sensorValue = analogRead(analogInPin);
+  // Writing the sensorValue to the serial monitor  
+  Serial.println(sensorValue);
+  // Mapping the outputValue to the range of the analog out:
+  // 0 - 1023 is the range of values that a reading from analogRead could be
+  // 0 - 255 is the range of values to convert for the LED  
+  outputValue = map(sensorValue, 0, 1023, 0, 255); 
+  // cnage the analog out value
+  analogWrite(ledPin, outputValue); 
+}
+</code>
+</pre>
+        </div>
+        
+    </body>
+</html>
