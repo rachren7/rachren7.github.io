@@ -1,0 +1,92 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+        <title>Rachel Ren's HCDE 439 Physical Computing Page!</title> 
+
+        <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+
+    </head> 
+    <body> 
+
+        <div class="header">
+            <h1>Rachel Ren's Assignment 5!</h1>
+            <p>
+            <img src="hw5_video.gif" width=400></a>
+            </p>
+            Here is a demo of the joystick controlling the motor
+            <p>
+            <img src="a5_pic1.jpg" width=400> </a>
+            </p>
+            <p>
+            <img src="a5_pic.jpg" width=400></a>
+            </p>
+            </p>
+            <p>
+            <img src="hwpic.jpg" width=400></a>
+            </p>
+            <p>
+            <img src="a5_schematic.png" width=400></a>
+            </p>
+            <p>
+            <img src="a5_schematic1.jpg" width=400></a>
+            </p>
+            Above are images and a schematic of the circuit.
+            
+            </p>
+            Here is all the code documentation for Assignment 5: 
+            </p>
+            <pre>
+                <code>
+// initialize the X value as 0
+int xValue = 0; 
+// initialize the Y value as 0
+int yValue = 0;
+// sets servoPin at pin 9 
+const int servoPin = 9; 
+// sets joystick X at A0 pin
+const int joystickX = A0;
+// sets joystick Y at A1 pin
+const int joystickY = A1;
+
+
+#include <Servo.h>
+
+// create a servo object
+Servo myServo;
+
+void setup() {
+  // initializes serial communication at 9600 bps
+  Serial.begin(9600); 
+  // attaches the servo on servoPin to the servo object
+  myServo.attach(servoPin);
+}
+
+void loop() {
+  // reads joystick X value from input pin
+  xValue = analogRead(joystickX);   
+  // reads joystick Y value from input pin
+  yValue = analogRead(joystickY);   
+
+  // determines how the servo motor will turn
+  if (xValue == 0 && yValue < 500) {
+    // if the joystick is facing down, the motor will spin 90 degrees
+    myServo.write(90);
+  } else if (xValue > 400 && yValue > 500) { 
+    // if the joystick is facing left, the motor spins 180 degrees
+    myServo.write(180);
+  } else if (xValue > 600 && yValue < 600) { 
+    // if the joystick is facing up, the motor will spin up at 0 degrees
+    myServo.write(0);
+  }
+  // wait for the servo to get there
+  delay(15);
+}
+</code>
+</pre>
+        </div>
+        
+    </body>
+</html>
