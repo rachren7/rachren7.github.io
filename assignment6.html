@@ -127,13 +127,17 @@ Here is the arduino code:
 </p>
             <pre>
                 <code>
+// set up serial port
 void setup() {
   Serial.begin(9600);
 }
 
 void loop() {
+  // initialize button to A2 on arduino board
   int button = digitalRead(A2);
+  // prints button read to serial port
   Serial.println(button);
+  // delays 50 units of time
   delay(50);
 }
 
